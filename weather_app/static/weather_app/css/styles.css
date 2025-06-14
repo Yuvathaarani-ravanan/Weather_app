@@ -578,3 +578,76 @@ body {
   padding: 30px;
   flex-direction: column;
 }
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+    font-size: 15px;
+  }
+
+  .wrapper {
+    padding: 20px 15px;
+    max-width: 100%;
+  }
+
+  h1, h2, h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  input[type="text"],
+  select,
+  button[type="submit"] {
+    font-size: 15px;
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .btn,
+  .btn-back-home {
+    font-size: 15px;
+    padding: 12px 20px;
+  }
+
+  .weather-result p {
+    font-size: 1rem;
+  }
+
+  .theme-toggle {
+    right: 10px;
+    bottom: 15px;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .cloud {
+    width: 150px;
+    height: 90px;
+  }
+
+  #stars-canvas,
+  #rain-layer,
+  #snow-layer {
+    display: block;
+  }
+}
+
+/* Tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .wrapper {
+    max-width: 90%;
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  input[type="text"],
+  select,
+  button[type="submit"] {
+    font-size: 16px;
+  }
+}
