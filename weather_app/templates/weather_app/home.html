@@ -1,0 +1,64 @@
+<!-- templates/home.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Weather App - Home</title>
+  <link rel="stylesheet" href="{% static 'weather_app/css/styles.css' %}">
+</head>
+<body data-weather="rain snow clouds">
+  <div class="background-layer"></div>
+<div id="rain-layer"></div>
+<canvas id="stars-canvas"></canvas>
+  <!-- Weather animation layers -->
+  <div class="background-layer">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div id="rain-layer"></div>
+    <div id="snow-layer"></div>
+    <canvas id="stars-canvas"></canvas>
+  </div>
+<div class="cloud-layer">
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+</div>
+
+  <div class="wrapper">
+    <h1>🌤️ Welcome to the Weather Portal</h1>
+    <h2>Select a weather view</h2>
+    <div class="button-group">
+      <a href="{% url 'current_weather' %}" class="btn">Current Weather</a>
+      <a href="{% url 'daily_weather' %}" class="btn">Daily Weather</a>
+      <a href="{% url 'forecast_weather' %}" class="btn">Forecast</a>
+    </div>
+  </div>
+
+  <script src="{% static 'weather_app/js/clouds.js' %}"></script>
+  <script src="{% static 'weather_app/js/background.js' %}"></script>
+<div class="svg-cloud-background">
+  <svg viewBox="0 0 1200 200" preserveAspectRatio="xMidYMid slice">
+    <g class="cloud-group">
+      <circle class="cloud" cx="100" cy="60" r="30" />
+      <circle class="cloud" cx="130" cy="60" r="40" />
+      <circle class="cloud" cx="170" cy="60" r="30" />
+    </g>
+    <g class="cloud-group delay1">
+      <circle class="cloud" cx="300" cy="90" r="25" />
+      <circle class="cloud" cx="330" cy="90" r="35" />
+      <circle class="cloud" cx="370" cy="90" r="25" />
+    </g>
+    <g class="cloud-group delay2">
+      <circle class="cloud" cx="600" cy="50" r="20" />
+      <circle class="cloud" cx="630" cy="50" r="30" />
+      <circle class="cloud" cx="670" cy="50" r="20" />
+    </g>
+  </svg>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Current Weather</title>
+  <link rel="stylesheet" href="{% static 'weather_app/css/styles.css' %}">
+</head>
+<body data-weather="rain snow clouds">
+
+<!-- Background Layers -->
+<div class="background-layer">
+  <div class="cloud cloud-1"></div>
+  <div class="cloud cloud-2"></div>
+  <div class="cloud cloud-3"></div>
+  <div id="rain-layer"></div>
+  <div id="snow-layer"></div>
+  <canvas id="stars-canvas"></canvas>
+</div>
+
+<div class="wrapper">
+  <h1>🌡️ Current Weather</h1>
+  <form method="post">
+    {% csrf_token %}
+    <select name="city" required>
+    <option value="">-- Select a District --</option>
+  <option value="Ariyalur">Ariyalur</option>
+  <option value="Chengalpattu">Chengalpattu</option>
+  <option value="Chennai">Chennai</option>
+  <option value="Coimbatore">Coimbatore</option>
+  <option value="Cuddalore">Cuddalore</option>
+  <option value="Dharmapuri">Dharmapuri</option>
+  <option value="Dindigul">Dindigul</option>
+  <option value="Erode">Erode</option>
+  <option value="Kallakurichi">Kallakurichi</option>
+  <option value="Kancheepuram">Kancheepuram</option>
+  <option value="Karur">Karur</option>
+  <option value="Krishnagiri">Krishnagiri</option>
+  <option value="Madurai">Madurai</option>
+  <option value="Mayiladuthurai">Mayiladuthurai</option>
+  <option value="Nagapattinam">Nagapattinam</option>
+  <option value="Namakkal">Namakkal</option>
+  <option value="Nilgiris">Nilgiris</option>
+  <option value="Perambalur">Perambalur</option>
+  <option value="Pudukkottai">Pudukkottai</option>
+  <option value="Ramanathapuram">Ramanathapuram</option>
+  <option value="Ranipet">Ranipet</option>
+  <option value="Salem">Salem</option>
+  <option value="Sivaganga">Sivaganga</option>
+  <option value="Tenkasi">Tenkasi</option>
+  <option value="Thanjavur">Thanjavur</option>
+  <option value="Theni">Theni</option>
+  <option value="Thoothukudi">Thoothukudi</option>
+  <option value="Tiruchirappalli">Tiruchirappalli</option>
+  <option value="Tirunelveli">Tirunelveli</option>
+  <option value="Tirupathur">Tirupathur</option>
+  <option value="Tiruppur">Tiruppur</option>
+  <option value="Tiruvallur">Tiruvallur</option>
+  <option value="Tiruvannamalai">Tiruvannamalai</option>
+  <option value="Tiruvarur">Tiruvarur</option>
+  <option value="Vellore">Vellore</option>
+  <option value="Viluppuram">Viluppuram</option>
+  <option value="Virudhunagar">Virudhunagar</option>
+</select>
+    
+      {% for district in districts %}
+        <option value="{{ district }}">{{ district }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Check Weather</button>
+  </form>
+
+  {% if weather %}
+  <div class="weather-result">
+    <h3>Weather in {{ weather.name }}</h3>
+    <p><strong>Temperature:</strong> {{ weather.main.temp }} °C</p>
+    <p><strong>Weather:</strong> {{ weather.weather.0.description|capfirst }}</p>
+    <p><strong>Humidity:</strong> {{ weather.main.humidity }}%</p>
+    <p><strong>Wind:</strong> {{ weather.wind.speed }} m/s</p>
+  </div>
+  {% elif error %}
+  <div class="error">{{ error }}</div>
+  {% endif %}
+
+  <form action="{% url 'home' %}" method="get" style="text-align: center; margin: 20px 0;">
+    <button type="submit" class="btn-back-home">Back to Home</button>
+  </form>
+</div>
+
+<script src="{% static 'weather_app/js/clouds.js' %}"></script>
+<script src="{% static 'weather_app/js/background.js' %}"></script>
+<div class="svg-cloud-background">
+  <svg viewBox="0 0 1200 200" preserveAspectRatio="xMidYMid slice">
+    <g class="cloud-group">
+      <circle class="cloud" cx="100" cy="60" r="30" />
+      <circle class="cloud" cx="130" cy="60" r="40" />
+      <circle class="cloud" cx="170" cy="60" r="30" />
+    </g>
+    <g class="cloud-group delay1">
+      <circle class="cloud" cx="300" cy="90" r="25" />
+      <circle class="cloud" cx="330" cy="90" r="35" />
+      <circle class="cloud" cx="370" cy="90" r="25" />
+    </g>
+    <g class="cloud-group delay2">
+      <circle class="cloud" cx="600" cy="50" r="20" />
+      <circle class="cloud" cx="630" cy="50" r="30" />
+      <circle class="cloud" cx="670" cy="50" r="20" />
+    </g>
+  </svg>
+</div>
+
+</body>
+</html>
