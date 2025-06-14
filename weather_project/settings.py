@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-475ckufgouwaw*nh2#q-p%wws!bh+m&%5%wolmq=%juz1y!!az
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 # Application definition
 
